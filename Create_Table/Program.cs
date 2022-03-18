@@ -16,6 +16,25 @@ namespace Create_Table
         public void CreateTable()
         {
             SqlConnection con = null;
+            try
+            {
+                con = new SqlConnection("data source=LAPTOP-DMUVDQOK\\WIRATAMA;database=ProdiTI;Integrated Security = TRUE ");
+                con.Open();
+
+                SqlCommand cm = new SqlCommand("create table Mahasiswa_Coba (NIM char(12) not null primary key, Nama varchar(50), Alamat varchar(255), Jenis_Kelamin char(1))", con);
+                cm.ExecuteNonQuery();
+
+                Console.WriteLine("Tabel Sukses Dibuat");
+                Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Oops, Sepertinya ada yang salah. " + e);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }
